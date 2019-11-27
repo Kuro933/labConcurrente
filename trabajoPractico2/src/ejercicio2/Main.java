@@ -9,23 +9,25 @@ public class Main {
 		int num = 1;
 		Random rnd = new Random();
 		Scanner sc = new Scanner(System.in);
-		int[][] matriz = new int[5][5];
 		String s = "", ady = "";
+		int capacidad = rnd.nextInt(10) + 3;
+		int[][] matriz = new int[capacidad][capacidad];
+
 		int x = matriz.length - 1;
 		int y = matriz[0].length - 1;
 
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz.length; j++) {
-				matriz[i][j] = rnd.nextInt(50) + 1;
+				matriz[i][j] = rnd.nextInt(500) + 1;
 			}
 		}
 
-		System.out.println("adyacentes de que fila");
+		System.out.println("adyacentes de que fila (max= " + capacidad + ")");
 		int fila = sc.nextInt();
-		System.out.println("columna");
+		System.out.println("columna  (max= " + capacidad + ")");
 		int columna = sc.nextInt();
-		
-		//esquinas
+
+		// esquinas
 		if (fila == 1 && columna == 1) {
 			ady += (matriz[0][1] + " " + matriz[1][0] + " " + matriz[1][1] + " " + matriz[0][y] + " " + matriz[1][y]
 					+ " " + matriz[x][y] + " " + matriz[x][0] + " " + matriz[x][1]);
@@ -38,14 +40,14 @@ public class Main {
 		} else if (fila == matriz.length && columna == matriz[0].length) {
 			ady += (matriz[x - 1][y] + " " + matriz[x - 1][y - 1] + " " + matriz[x][y - 1] + " " + matriz[0][0] + " "
 					+ matriz[0][y] + " " + matriz[x - 1][0] + " " + matriz[x][0] + " " + matriz[0][y - 1]);
-		
+
 			// Laterales
 		} else if (fila == 1) {
 			ady += (matriz[0][columna - 2] + " " + matriz[0][columna] + " " + matriz[1][columna - 2] + " "
 					+ matriz[1][columna - 1] + " " + matriz[1][columna] + " " + matriz[x][columna - 2] + " "
 					+ matriz[x][columna - 1] + " " + matriz[x][columna]);
 
-		} else if (fila == 5) {
+		} else if (fila == matriz.length) {
 			ady += (matriz[x][columna - 2] + " " + matriz[x][columna] + " " + matriz[x - 1][columna - 2] + " "
 					+ matriz[x - 1][columna - 1] + " " + matriz[x - 1][columna] + " " + matriz[0][columna - 2] + " "
 					+ matriz[0][columna - 1] + " " + matriz[0][columna]);
@@ -55,7 +57,7 @@ public class Main {
 					+ " " + matriz[fila - 1][columna] + " " + matriz[fila][columna] + " " + matriz[fila - 2][y] + " "
 					+ matriz[fila - 1][y] + " " + matriz[fila][y]);
 
-		} else if (columna == 5) {
+		} else if (columna == matriz[0].length) {
 			ady += (matriz[fila - 2][y] + " " + matriz[fila][y] + "	" + matriz[fila - 2][columna - 2] + " "
 					+ matriz[fila - 1][columna - 2] + " " + matriz[fila][columna - 2] + " " + matriz[fila - 2][0] + " "
 					+ matriz[fila - 1][0] + " " + matriz[fila][0]);
@@ -76,7 +78,7 @@ public class Main {
 			s += "\n";
 		}
 
-		System.out.println("adyacentes de " + matriz[fila - 1][columna - 1] + " " + ady);
+		System.out.println("los adyacentes del elemento" +(fila) + " "+ (columna) + " " +matriz[fila - 1][columna - 1] + "son: " + ady);
 
 		System.out.println(s);
 
